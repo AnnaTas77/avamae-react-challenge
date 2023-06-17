@@ -1,0 +1,24 @@
+.nav-container {
+    display: flex;
+    width: 100%;
+}
+.nav-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+.logo-image {
+    height: 20px;
+}
+
+.link-container {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+.nav-link a {
+    padding: 20px;
+    text-decoration: none;
+}
