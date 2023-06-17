@@ -1,0 +1,67 @@
+.lorem-paragraph {
+    font-weight: 500;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.form-first-row {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.column-name,
+.column-email {
+    flex-grow: 1;
+}
+.column-name input {
+    width: 95%;
+}
+.column-email input {
+    width: 95%;
+}
+
+.optional {
+    font-style: italic;
+}
+
+input,
+textarea {
+    border-radius: 4px;
+    border: 1px solid var(--light-grey);
+    background-color: var(--lightest-grey);
+}
+
+input {
+    padding: 10px 0;
+}
+
+.add-number-btn {
+    margin: 20px 0 20px;
+    background-color: var(--lightest-blue);
+    color: var(--fb-blue);
+    font-weight: 500;
+    padding: 10px 0 10px;
+    border-radius: 4px;
+    border: none;
+}
+
+.checkbox-btn {
+    margin-top: 10px;
+}
+
+.submit-btn {
+    margin: 20px 0 20px;
+    background-color: var(--fb-blue);
+    color: white;
+    font-weight: 500;
+    padding: 10px 0 10px;
+    border-radius: 4px;
+    border: none;
+}

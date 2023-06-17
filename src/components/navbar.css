@@ -1,7 +1,6 @@
 .nav-container {
     display: flex;
     width: 100%;
-    padding: 10px 0 10px;
     border-bottom: 1px solid var(--light-grey);
 }
 .nav-wrapper {
@@ -19,12 +18,14 @@
     flex-direction: row;
     list-style: none;
     align-items: center;
+    margin: 10px;
 }
 
 .nav-link a {
-    padding: 20px;
+    padding: 0px 20px;
     text-decoration: none;
     text-transform: uppercase;
+    font-weight: 470;
 }
 
 .nav-link a:link,
@@ -33,9 +34,9 @@
 }
 
 .login-btn {
-    padding: 12px 27px;
-    background-color: var(--login-btn);
-    color: var(--login-text);
+    padding: 14px 27px;
+    background-color: var(--lightest-blue);
+    color: var(--fb-blue);
     border-radius: 3px;
     border: none;
 }

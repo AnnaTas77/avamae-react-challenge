@@ -1,17 +1,20 @@
 :root {
-    --background-color: #f7f8f8;
-    --text-color: #585858;
+    --background-color: #fafafa;
+    --text-color: #535353;
     --light-grey: #dadada;
-    --login-text: rgb(22, 109, 159);
-    --login-btn: rgba(133, 206, 255, 0.171);
+    --fb-blue: rgb(24, 130, 191);
+    --lightest-blue: rgba(133, 206, 255, 0.144);
+    --lightest-grey: rgba(207, 217, 227, 0.11);
 }
 
 html,
 body {
     height: 100%;
     margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
     font-size: 12px;
-    line-height: 1.5;
+    line-height: 1.8;
     background-color: var(--background-color);
     color: var(--text-color);
 }
