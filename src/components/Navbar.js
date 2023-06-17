@@ -1,3 +1,4 @@
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./navbar.css";
 import Logo from "../resources/Logo.svg";
@@ -11,16 +12,21 @@ const Navbar = () => {
                 </Link>
                 <ul className="link-container">
                     <li className="nav-link">
-                        <NavLink to="/" class>
+                        <NavLink to="/" className="nav-link">
                             Home
                         </NavLink>
                     </li>
                     <li className="nav-link">
-                        <NavLink to="/about-us">About Us</NavLink>
+                        <NavLink to="/about-us" className="nav-link">
+                            About Us
+                        </NavLink>
                     </li>
                     <li className="nav-link">
-                        <NavLink to="/contact-us">Contact Us</NavLink>
+                        <NavLink to="/contact-us" className="nav-link">
+                            Contact Us
+                        </NavLink>
                     </li>
+                    <button className="login-btn">Log In</button>
                 </ul>
             </div>
         </nav>

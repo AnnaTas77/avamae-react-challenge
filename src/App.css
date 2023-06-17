@@ -1,7 +1,19 @@
+:root {
+    --background-color: #f7f8f8;
+    --text-color: #585858;
+    --light-grey: #dadada;
+    --login-text: rgb(22, 109, 159);
+    --login-btn: rgba(133, 206, 255, 0.171);
+}
+
 html,
 body {
     height: 100%;
     margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .app-container {

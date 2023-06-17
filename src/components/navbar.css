@@ -1,6 +1,8 @@
 .nav-container {
     display: flex;
     width: 100%;
+    padding: 10px 0 10px;
+    border-bottom: 1px solid var(--light-grey);
 }
 .nav-wrapper {
     display: flex;
@@ -16,9 +18,24 @@
     display: flex;
     flex-direction: row;
     list-style: none;
+    align-items: center;
 }
 
 .nav-link a {
     padding: 20px;
     text-decoration: none;
+    text-transform: uppercase;
+}
+
+.nav-link a:link,
+.nav-link a:visited {
+    color: var(--text-color);
+}
+
+.login-btn {
+    padding: 12px 27px;
+    background-color: var(--login-btn);
+    color: var(--login-text);
+    border-radius: 3px;
+    border: none;
 }
