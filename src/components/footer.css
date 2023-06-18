@@ -4,7 +4,8 @@
     width: 70%;
     padding: 10px 0 10px;
     border-top: 1px solid var(--light-grey);
-    margin-top: 50px;
+    background-color: var(--off-white-color);
+    z-index: 10;
 }
 
 .footer-text {
