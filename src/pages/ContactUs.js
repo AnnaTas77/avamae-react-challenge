@@ -72,7 +72,7 @@ const ContactUs = () => {
         return response;
     }
 
-    const handleSubmit = (event) => {
+    function handleSubmit(event) {
         event.preventDefault();
 
         if (submitPending) {
@@ -82,28 +82,36 @@ const ContactUs = () => {
             setSubmitPending(true);
         }
 
-        submitContactUsForm(contactState).then((response) => {
-            if (response.status === 200) {
-                response.json().then((responseData) => {
-                    console.log("Received response : ", responseData);
-                    alert("Thank you for sending us a message! We have received it and will get back to you shortly.");
-                    setContactState(createNewContactState);
-                });
-            } else {
-                response.json().then((responseData) => {
-                    console.log("Received response : ", responseData);
-                    alert("There was a problem receiving your message. Please try again later.");
-                });
-            }
+        submitContactUsForm(contactState)
+            .then((response) => {
+                if (response.status === 200) {
+                    response.json().then((responseData) => {
+                        console.log("Received response : ", responseData);
+                        alert(
+                            "Thank you for sending us a message! We have received it and will get back to you shortly."
+                        );
+                        setContactState(createNewContactState);
+                    });
+                } else {
+                    response.json().then((responseData) => {
+                        console.log("Received response : ", responseData);
+                        alert("There was a problem receiving your message. Please try again later.");
+                    });
+                }
 
-            setSubmitPending(false);
-        });
-    };
+                setSubmitPending(false);
+            })
+            .catch((e) => {
+                alert("There was a problem receiving your message. Please try again later.");
+                setSubmitPending(false);
+            });
+    }
 
     return (
         <div className="contact-container">
             <div className="contact-wrapper">
                 <h2 className="contact-us">Contact Us</h2>
+                {submitPending ? <p>Sending message...</p> : ""}
                 <p className="lorem-paragraph">
                     Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae. Adipiscing
                     elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus.
