@@ -82,26 +82,22 @@ const ContactUs = () => {
             setSubmitPending(true);
         }
 
-        setTimeout(() => {
-            submitContactUsForm(contactState).then((response) => {
-                if (response.status === 200) {
-                    response.json().then((responseData) => {
-                        console.log("Received response : ", responseData);
-                        alert(
-                            "Thank you for sending us a message! We have received it and will get back to you shortly."
-                        );
-                        setContactState(createNewContactState);
-                    });
-                } else {
-                    response.json().then((responseData) => {
-                        console.log("Received response : ", responseData);
-                        alert("There was a problem receiving your message. Please try again later.");
-                    });
-                }
+        submitContactUsForm(contactState).then((response) => {
+            if (response.status === 200) {
+                response.json().then((responseData) => {
+                    console.log("Received response : ", responseData);
+                    alert("Thank you for sending us a message! We have received it and will get back to you shortly.");
+                    setContactState(createNewContactState);
+                });
+            } else {
+                response.json().then((responseData) => {
+                    console.log("Received response : ", responseData);
+                    alert("There was a problem receiving your message. Please try again later.");
+                });
+            }
 
-                setSubmitPending(false);
-            });
-        }, 10000);
+            setSubmitPending(false);
+        });
     };
 
     return (
