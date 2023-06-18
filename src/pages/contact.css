@@ -24,14 +24,12 @@
     gap: 10px;
     grid-template-areas:
         "name name  email email"
-        "phone phone phone phone"
+        "phone-number phone-number phone-number phone-number"
         "add-number add-number add-number add-number"
         "message message message message"
         "checkbox . . ."
         "address-container address-container address-container address-container"
         "address-container address-container address-container address-container"
-        /* "address-1 address-1 address-2 address-2"
-        "city state postcode country"*/
         "submit submit submit submit";
 }
 
@@ -61,9 +59,10 @@ input {
 .email {
     grid-area: email;
 }
-.phone {
-    grid-area: phone;
+.phone-number {
+    grid-area: phone-number;
 }
+
 .message {
     grid-area: message;
 }

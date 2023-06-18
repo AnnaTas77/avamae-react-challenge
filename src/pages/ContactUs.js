@@ -1,59 +1,177 @@
 import { React, useState } from "react";
 import "./contact.css";
 
-const ContactUs = () => {
-    const [addressFieldsVisibility, setAddressFieldsVisibility] =
-        useState(false);
+function createNewContactState() {
+    return {
+        FullName: "",
+        EmailAddress: "",
+        PhoneNumbers: [""],
+        Message: "",
+        bIncludeAddressDetails: false,
+        AddressDetails: {
+            AddressLine1: "",
+            AddressLine2: "",
+            CityTown: "",
+            StateCounty: "",
+            Postcode: "",
+            Country: "",
+        },
+    };
+}
 
-    function toggleAddressFields() {
-        setAddressFieldsVisibility(!addressFieldsVisibility);
+const ContactUs = () => {
+    const [contactState, setContactState] = useState(createNewContactState());
+    const [submitPending, setSubmitPending] = useState(false);
+
+    function handleChange(event) {
+        const newContactState = { ...contactState };
+        const elementId = event.target.id;
+        const elementValue = event.target.value;
+
+        if (elementId.startsWith("bIncludeAddressDetails")) {
+            newContactState.bIncludeAddressDetails = event.target.checked;
+        } else if (newContactState.AddressDetails.hasOwnProperty(elementId)) {
+            newContactState.AddressDetails[elementId] = elementValue;
+        } else if (elementId.startsWith("phone-")) {
+            const index = elementId.split("-")[1];
+            newContactState.PhoneNumbers[index] = elementValue;
+        } else {
+            newContactState[elementId] = elementValue;
+        }
+
+        if (!newContactState.bIncludeAddressDetails) {
+            newContactState.AddressDetails = {
+                AddressLine1: "",
+                AddressLine2: "",
+                CityTown: "",
+                StateCounty: "",
+                Postcode: "",
+                Country: "",
+            };
+        }
+
+        setContactState(newContactState);
     }
+
+    function addNewNumberHandler() {
+        const newContactState = { ...contactState };
+        newContactState.PhoneNumbers.push("");
+
+        setContactState(newContactState);
+    }
+
+    async function submitContactUsForm(data) {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        };
+        const response = await fetch("https://interview-assessment.api.avamae.co.uk/api/v1/contact-us/submit", options);
+        return response;
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if (submitPending) {
+            alert("Please wait while we process your previous message.");
+            return;
+        } else {
+            setSubmitPending(true);
+        }
+
+        setTimeout(() => {
+            submitContactUsForm(contactState).then((response) => {
+                if (response.status === 200) {
+                    response.json().then((responseData) => {
+                        console.log("Received response : ", responseData);
+                        alert(
+                            "Thank you for sending us a message! We have received it and will get back to you shortly."
+                        );
+                        setContactState(createNewContactState);
+                    });
+                } else {
+                    response.json().then((responseData) => {
+                        console.log("Received response : ", responseData);
+                        alert("There was a problem receiving your message. Please try again later.");
+                    });
+                }
+
+                setSubmitPending(false);
+            });
+        }, 10000);
+    };
 
     return (
         <div className="contact-container">
             <div className="contact-wrapper">
                 <h2 className="contact-us">Contact Us</h2>
                 <p className="lorem-paragraph">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit
-                    quisque faucibus ex sapien vitae. Adipiscing elit quisque
-                    faucibus ex sapien vitae pellentesque sem placerat in id
-                    cursus.
+                    Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae. Adipiscing
+                    elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus.
                 </p>
-                <form className="contact-form">
+                <form className="contact-form" onSubmit={handleSubmit}>
                     <div className="name">
                         <div>
-                            <label htmlFor="name">Full name</label>
+                            <label htmlFor="FullName">Full name</label>
                         </div>
-                        <input type="text" id="name" name="name" required />
+                        <input
+                            type="text"
+                            id="FullName"
+                            value={contactState.FullName}
+                            onChange={handleChange}
+                            required
+                        />
                     </div>
                     <div className="email">
                         <div>
-                            <label htmlFor="email">Email address</label>
+                            <label htmlFor="EmailAddress">Email address</label>
                         </div>
-                        <input type="text" id="email" name="email" required />
+                        <input
+                            type="text"
+                            id="EmailAddress"
+                            value={contactState.EmailAddress}
+                            onChange={handleChange}
+                            required
+                        />
                     </div>
-                    <div className="phone">
-                        <div>
-                            <label htmlFor="phone">
-                                Phone number 01
-                                <span className="optional"> - optional</span>
-                            </label>
-                        </div>
-                        <input type="text" id="phone" name="phone" />
+                    <div className="phone-number">
+                        {contactState.PhoneNumbers.map((phoneNumber, index) => {
+                            return (
+                                <div key={index} className={`phone-${index}`}>
+                                    <div>
+                                        <label htmlFor={`phone-${index}`}>
+                                            {`Phone number ${index + 1}`}
+                                            <span className="optional">- optional</span>
+                                        </label>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        id={`phone-${index}`}
+                                        value={phoneNumber}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                            );
+                        })}
                     </div>
 
-                    <button className="add-number-btn">
+                    <button className="add-number-btn" onClick={addNewNumberHandler}>
                         Add new phone number
                     </button>
+
                     <div className="message">
                         <div>
-                            <label htmlFor="message">Message</label>
+                            <label htmlFor="Message">Message</label>
                             <span>Maximum text length is 500 characters</span>
                         </div>
                         <textarea
-                            id="message"
-                            name="message"
+                            id="Message"
+                            value={contactState.Message}
                             rows="10"
+                            onChange={handleChange}
                             required
                         ></textarea>
                     </div>
@@ -61,94 +179,66 @@ const ContactUs = () => {
                     <div className="checkbox-btn">
                         <input
                             type="checkbox"
-                            id="address"
-                            name="address_details"
-                            value="address_details"
-                            onChange={toggleAddressFields}
+                            id="bIncludeAddressDetails"
+                            value={contactState.bIncludeAddressDetails}
+                            onChange={handleChange}
                         ></input>
-                        <label htmlFor="address">Add address details</label>
+                        <label htmlFor="bIncludeAddressDetails">Add address details</label>
                     </div>
-                    {addressFieldsVisibility ? (
+                    {contactState.bIncludeAddressDetails ? (
                         <div className="address-container">
                             <div className="address-1">
                                 <div>
-                                    <label htmlFor="address-1">
-                                        Address line 1
-                                    </label>
+                                    <label htmlFor="AddressLine1">Address line 1</label>
                                 </div>
                                 <input
                                     type="text"
-                                    id="address-1"
-                                    name="address-1"
+                                    id="AddressLine1"
+                                    onChange={handleChange}
+                                    value={contactState.AddressDetails.AddressLine1}
                                     required
                                 />
                             </div>
                             <div className="address-2">
                                 <div>
-                                    <label htmlFor="address-2">
-                                        Address line 2
-                                        <span className="optional">
-                                            {" "}
-                                            - optional
-                                        </span>
+                                    <label htmlFor="AddressLine2">
+                                        Address line 2<span className="optional"> - optional</span>
                                     </label>
                                 </div>
-                                <input
-                                    type="text"
-                                    id="address-2"
-                                    name="address-2"
-                                />
+                                <input type="text" id="AddressLine2" onChange={handleChange} />
                             </div>
                             <div className="city-town">
                                 <div>
-                                    <label htmlFor="city-town">City/Town</label>
+                                    <label htmlFor="CityTown">City/Town</label>
                                 </div>
-                                <input
-                                    type="text"
-                                    id="city-town"
-                                    name="city-town"
-                                />
+                                <input type="text" id="CityTown" onChange={handleChange} />
                             </div>
                             <div className="state-county">
                                 <div>
-                                    <label htmlFor="state-county">
-                                        State/County
-                                    </label>
+                                    <label htmlFor="StateCounty">State/County</label>
                                 </div>
 
-                                <input
-                                    type="text"
-                                    id="state-county"
-                                    name="state-county"
-                                />
+                                <input type="text" id="StateCounty" onChange={handleChange} />
                             </div>
                             <div className="postcode">
                                 <div>
-                                    <label htmlFor="postcode">Postcode</label>
+                                    <label htmlFor="Postcode">Postcode</label>
                                 </div>
-                                <input
-                                    type="text"
-                                    id="postcode"
-                                    name="postcode"
-                                />
+                                <input type="text" id="Postcode" onChange={handleChange} />
                             </div>
 
                             <div className="country">
                                 <div>
-                                    <label htmlFor="country">Country</label>
+                                    <label htmlFor="Country">Country</label>
                                 </div>
-                                <input
-                                    type="text"
-                                    id="country"
-                                    name="country"
-                                />
+                                <input type="text" id="Country" onChange={handleChange} />
                             </div>
                         </div>
                     ) : (
                         ""
                     )}
 
-                    <button className="submit-btn">Submit</button>
+                    <input type="submit" className="submit-btn" value="Submit" />
                 </form>
             </div>
             <div className="logo-container"></div>
