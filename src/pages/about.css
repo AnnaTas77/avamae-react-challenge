@@ -1,3 +1,9 @@
+.about-page {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
 .lorem-li {
     font-weight: bold;
 }

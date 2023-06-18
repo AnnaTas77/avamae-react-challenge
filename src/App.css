@@ -5,6 +5,7 @@
     --fb-blue: rgb(24, 130, 191);
     --lightest-blue: rgba(133, 206, 255, 0.144);
     --lightest-grey: rgba(207, 217, 227, 0.11);
+    --brown-color: #6d6262e0;
 }
 
 html,
@@ -22,11 +23,5 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-}
-
-.pages-container {
-    display: flex;
-    width: 70%;
     flex-direction: column;
 }

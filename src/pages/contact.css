@@ -6,7 +6,7 @@
 .contact-wrapper {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 50%;
 }
 
 .lorem-paragraph {
@@ -27,7 +27,7 @@
         "phone-number phone-number phone-number phone-number"
         "add-number add-number add-number add-number"
         "message message message message"
-        "checkbox . . ."
+        "checkbox checkbox checkbox checkbox"
         "address-container address-container address-container address-container"
         "address-container address-container address-container address-container"
         "submit submit submit submit";
@@ -67,16 +67,14 @@ input {
     grid-area: message;
 }
 
-/* .checkbox-container {
-    grid-area: checkbox-container;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
-    grid-template-areas:
-        "checkbox checkbox checkbox checkbox"
-        "address-container address-container address-container address-container";
+.message-label {
+    display: flex;
+    justify-content: space-between;
 }
-*/
+.message-label span {
+    font-weight: 300;
+    font-size: 10px;
+}
 
 .address-container {
     grid-area: address-container;
@@ -129,7 +127,7 @@ input {
     grid-area: submit;
     margin: 20px 0 20px;
     background-color: var(--fb-blue);
-    color: white;
+    color: var(--off-white-color);
     font-weight: 500;
     padding: 10px 0 10px;
     border-radius: 4px;

@@ -1,5 +1,4 @@
 import { LoremIpsum } from "react-lorem-ipsum";
-import React from "react";
 import "./about.css";
 import Image from "../resources/shutterstock_696636415.jpg";
 
@@ -24,31 +23,23 @@ const AboutUs = () => {
     };
 
     return (
-        <div>
+        <div className="about-page">
             <h2 className="about-us">About Us</h2>
 
             <p className="lorem-paragraph">
                 <strong>
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit
-                    quisque faucibus ex sapien vitae pellentesque sem placerat
-                    in.
+                    Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque
+                    sem placerat in.
                 </strong>
                 <br />
-                Adipiscing elit quisque faucibus ex sapien vitae pellentesque
-                sem placerat in id cursus mi pretium tellus duis. Vitae
-                pellentesque sem placerat in id cursus mi pretium tellus duis
-                convallis tempus leo eu aenean sed. Cursus mi pretium tellus
-                duis convallis tempus leo eu aenean sed diam urna tempor
-                pulvinar vivamus fringilla. Tempus leo eu aenean sed diam urna
-                tempor pulvinar vivamus fringilla lacus nec metus bibendum
-                egestas iaculis. Urna tempor pulvinar vivamus fringilla lacus
-                nec metus bibendum egestas iaculis massa nisl malesuada lacinia
-                integer nunc.
+                Adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium
+                tellus duis. Vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu
+                aenean sed. Cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam urna tempor pulvinar
+                vivamus fringilla. Tempus leo eu aenean sed diam urna tempor pulvinar vivamus fringilla lacus nec metus
+                bibendum egestas iaculis. Urna tempor pulvinar vivamus fringilla lacus nec metus bibendum egestas
+                iaculis massa nisl malesuada lacinia integer nunc.
                 <span>
-                    <a href="https://example.com">
-                        Praesent aliquam quam vitae urna
-                    </a>
-                    , et convallis ipsum aliquet.
+                    <a href="https://example.com">Praesent aliquam quam vitae urna</a>, et convallis ipsum aliquet.
                 </span>
             </p>
             <p className="lorem-paragraph">

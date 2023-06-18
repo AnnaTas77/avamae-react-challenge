@@ -167,7 +167,7 @@ const ContactUs = () => {
                     </button>
 
                     <div className="message">
-                        <div>
+                        <div className="message-label">
                             <label htmlFor="Message">Message</label>
                             <span>Maximum text length is 500 characters</span>
                         </div>
