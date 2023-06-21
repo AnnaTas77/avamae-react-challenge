@@ -7,16 +7,74 @@
 .section-one {
     display: flex;
     width: 100%;
+    align-items: flex-start;
+    height: 700px;
+    overflow: hidden;
+    z-index: 1;
+    top: -190px;
+    position: relative;
+}
+
+.section-one::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.86), #0000);
+    z-index: 1;
+}
+
+.section-one h1 {
+    font-weight: 600;
+    font-size: 32px;
+}
+
+.section-one h3 {
+    font-weight: 400;
+    font-size: 18px;
 }
 
 .woman-glasses {
     width: 100%;
+    object-fit: cover;
+    position: relative;
+}
+
+.section-one-textbox {
+    color: var(--off-white-color);
+    width: 27%;
+    padding: 30px;
+    border-radius: 3px;
+    position: absolute;
+    top: 50%;
+    left: calc(20% + 70px);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.section-one-btn {
+    margin: 50px 0 25px;
+}
+
+.section-one-btn a {
+    padding: 14px 30px;
+    background-color: var(--fb-blue);
+    color: var(--off-white-color);
+    border-radius: 3px;
+    border: none;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    text-decoration: none;
 }
 
 .section-two {
     display: flex;
-    width: 60%;
+    /* width: 60%; */
+    padding: 30px 150px;
     align-items: center;
+    margin: -170px 0 auto;
 }
 
 .section-two-text {
@@ -30,7 +88,7 @@
     color: var(--off-white-color);
     border-radius: 3px;
     border: none;
-    font-weight: 500;
+    font-weight: bold;
     margin: 20px auto;
 }
 
@@ -51,8 +109,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-
-    height: 500px;
+    min-height: 500px;
 }
 
 .section-three-image {
@@ -74,25 +131,28 @@
     width: 27%;
     padding: 30px;
     border-radius: 3px;
-    position: relative;
-    top: 20%;
-    left: 20%;
+    position: absolute;
+    top: 50%;
+    left: calc(20% + 70px);
+    transform: translate(-50%, -50%);
     z-index: 2;
 }
+
 .section-three-btn {
     padding: 14px 30px;
     background-color: var(--off-white-color);
     color: var(--fb-blue);
     border-radius: 3px;
     border: none;
+    font-weight: bold;
 }
 
 .section-four {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    /* width: 60%; */
     align-items: center;
-    padding: 20px;
+    padding: 30px 150px;
     margin-bottom: 25px;
 }
 
@@ -126,7 +186,7 @@
     color: var(--off-white-color);
     border-radius: 3px;
     border: none;
-    font-weight: 500;
+    font-weight: bold;
     font-family: "Roboto", sans-serif;
     text-decoration: none;
 }

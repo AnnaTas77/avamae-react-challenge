@@ -27,13 +27,22 @@ const Home = () => {
 
     return (
         <div className="home-container">
-            <div className="section-one">
+            <div className="section-one ">
                 <img src={WomanWithGlasses} className="woman-glasses" alt="Woman with glasses" />
+                <div className="section-one-textbox ">
+                    <h1>Lorem ipsum dolor</h1>
+                    <h3>Tempus leo eu aenean sed diam urna tempor pulvinar vivamus</h3>
+                    <div className="section-one-btn">
+                        <NavLink to="/contact-us" className="nav-link">
+                            Contact Us
+                        </NavLink>
+                    </div>
+                </div>
             </div>
 
             <div className="section-two">
                 <div className="section-two-text">
-                    <h1>Lorem ipsum dolor</h1>
+                    <h2>Lorem ipsum dolor</h2>
                     <p>
                         Adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi
                         pretium tellus duis. Vitae pellentesque sem placerat in id cursus mi pretium tellus duis
